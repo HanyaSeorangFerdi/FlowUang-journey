@@ -6,6 +6,7 @@ import LaporanPage from "./pages/LaporanPage";
 import Navbar from "./components/Navbar";
 
 export default function App() {
+
   const [page, setPage] = useState("home");
 
   return (
