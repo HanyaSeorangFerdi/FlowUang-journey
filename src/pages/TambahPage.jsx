@@ -1,3 +1,9 @@
 export default function TambahPage() {
-  return <h1>Tambah Transaksi</h1>;
+
+  return (
+    <>
+      <h2>Tambah Transaksi</h2>
+    </>
+  );
+
 }
