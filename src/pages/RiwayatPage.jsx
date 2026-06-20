@@ -1,3 +1,9 @@
 export default function RiwayatPage() {
-  return <h1>Riwayat</h1>;
+
+  return (
+    <>
+      <h2>Riwayat Transaksi</h2>
+    </>
+  );
+
 }
