@@ -1,3 +1,15 @@
+import CardTotal from "../components/CardTotal";
+import TrendChart from "../components/TrendChart";
+import CategoryChart from "../components/CategoryChart";
+
 export default function Home() {
-  return <h1>Home</h1>;
+
+  return (
+    <>
+      <CardTotal />
+      <TrendChart />
+      <CategoryChart />
+    </>
+  );
+
 }
