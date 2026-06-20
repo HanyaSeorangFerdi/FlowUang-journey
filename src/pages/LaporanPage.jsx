@@ -1,3 +1,9 @@
 export default function LaporanPage() {
-  return <h1>Laporan</h1>;
+
+  return (
+    <>
+      <h2>Laporan</h2>
+    </>
+  );
+
 }
