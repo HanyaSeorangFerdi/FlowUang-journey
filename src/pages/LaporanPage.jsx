@@ -1,9 +1,8 @@
 export default function LaporanPage() {
 
-  return (
-    <>
-      <h2>Laporan</h2>
-    </>
-  );
+  const pengeluaran = 1500000;
+  const pemasukan = 3000000;
 
-}
+  const kategori = [
+    {
+     
