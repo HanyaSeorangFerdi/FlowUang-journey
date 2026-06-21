@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { saveData } from "../utils/api";
 
 export default function TambahPage() {
 
@@ -10,19 +11,52 @@ export default function TambahPage() {
     new Date().toISOString().split("T")[0]
   );
 
-  function handleSave() {
+  const [loading, setLoading] = useState(false);
 
-    const data = {
-      nominal: Number(nominal),
-      kategori,
-      sumber,
-      catatan,
-      tanggal
-    };
+  async function handleSave() {
 
-    console.log(data);
+    if (!nominal) {
+      alert("Nominal wajib diisi");
+      return;
+    }
 
-    alert("Transaksi berhasil disimpan");
+    try {
+
+      setLoading(true);
+
+      const data = {
+        nominal: Number(nominal),
+        kategori,
+        sumber,
+        catatan,
+        tanggal
+      };
+
+      await saveData(data);
+
+      alert("Transaksi berhasil disimpan");
+
+      // reset form
+      setNominal("");
+      setKategori("Makanan");
+      setSumber("Cash");
+      setCatatan("");
+      setTanggal(
+        new Date().toISOString().split("T")[0]
+      );
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert("Gagal menyimpan transaksi");
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
   }
 
   return (
@@ -80,6 +114,7 @@ export default function TambahPage() {
           value={catatan}
           onChange={(e) => setCatatan(e.target.value)}
           style={styles.input}
+          placeholder="Catatan transaksi"
         />
 
         <label>Tanggal</label>
@@ -94,8 +129,9 @@ export default function TambahPage() {
         <button
           style={styles.button}
           onClick={handleSave}
+          disabled={loading}
         >
-          Simpan
+          {loading ? "Menyimpan..." : "Simpan"}
         </button>
 
       </div>
@@ -110,7 +146,8 @@ const styles = {
   card: {
     background: "#fff",
     borderRadius: 20,
-    padding: 20
+    padding: 20,
+    boxShadow: "0 2px 10px rgba(0,0,0,.08)"
   },
 
   input: {
@@ -118,9 +155,10 @@ const styles = {
     padding: 12,
     marginTop: 8,
     marginBottom: 20,
-    borderRadius: 10,
+    borderRadius: 12,
     border: "1px solid #ddd",
-    boxSizing: "border-box"
+    boxSizing: "border-box",
+    fontSize: 15
   },
 
   button: {
@@ -130,7 +168,9 @@ const styles = {
     color: "#fff",
     border: 0,
     borderRadius: 15,
-    fontSize: 16
+    fontSize: 16,
+    fontWeight: "bold",
+    cursor: "pointer"
   }
 
 };
