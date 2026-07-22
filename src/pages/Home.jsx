@@ -1,38 +1,14 @@
-import CardTotal from "../components/CardTotal";
-import TrendChart from "../components/TrendChart";
-import CategoryChart from "../components/CategoryChart";
+import { useState } from "react"
+import CardTotal from "../components/CardTotal"
+import TrendChart from "../components/TrendChart"
+import CategoryChart from "../components/CategoryChart"
 
-export default function Home() {
+export default function Home({transaksi, onRefresh, setHalaman}) {
+  const now = new Date()
+  const bln = now.getMonth()+1
+  const thn = now.getFullYear()
+  const NB = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"]
+  const NBF = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"]
 
-  return (
-    <div
-      style={{
-        background: "#f3f4f6",
-        minHeight: "100vh",
-        padding: 20,
-        paddingBottom: 100
-      }}
-    >
-
-      <h1>Dompet Cerdas</h1>
-
-      <CardTotal
-        title="Saldo Bulan Ini"
-        amount={2500000}
-        color="#16a34a"
-      />
-
-      <CardTotal
-        title="Pengeluaran"
-        amount={1350000}
-        color="#ef4444"
-      />
-
-      <TrendChart />
-
-      <CategoryChart />
-
-    </div>
-  );
-
-}
+  const bulanIni = transaksi.filter(t=>{
+    const p=t.tanggal?.split("/"); return p&&parseInt(p[1])===bln&&par
